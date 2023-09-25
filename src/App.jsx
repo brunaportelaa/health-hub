@@ -1,17 +1,23 @@
 import './App.css';
-import { NormalizeStyles } from './shared/NormalizeStyles'
-import PacienteHome from './screens/PacienteHome'
+import { NormalizeStyles } from './shared/NormalizeStyles';
 import PesquisaProntuario from './screens/PesquisaProntuario';
-import NavDrawer from './common-components/NavDrawer'
 import CadastrarPaciente from './screens/CadastrarPaciente';
 import CadastroProntuario from './screens/CadastrarProntuario';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CadastrarProntuario from './screens/CadastrarProntuario';
 
 function App() {
   return (
     <div>
-      <PesquisaProntuario />
-      <CadastrarPaciente />
-      <CadastroProntuario />
+      <NormalizeStyles />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<PesquisaProntuario/>} />
+          <Route path='/cadastrar-prontuario' element={<CadastrarProntuario/>}/>
+          <Route path='/cadastrar-paciente' element={<CadastrarPaciente/>}/>
+          <Route path='*' element=''/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

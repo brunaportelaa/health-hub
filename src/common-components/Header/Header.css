@@ -58,6 +58,14 @@
     width: 201px; 
     height: 42px; 
   }
+
+  .header-button a {
+    text-decoration: none;
+  }
+
+  .header-button a:visited {
+    color: #fff;
+  }
   
 
   @media (max-width: 768px) {
