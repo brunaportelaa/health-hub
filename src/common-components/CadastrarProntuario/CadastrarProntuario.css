@@ -1,0 +1,54 @@
+.container-cadastrar-prontuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.titulo-cadastrar-prontuario {
+    font-family: Poppins;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 72px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.titulo-diagnostico-medicamento {
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.form-cadastrar-prontuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 50px;
+}
+
+.button-cadastrar-prontuario {
+    margin: 40px;
+    background: linear-gradient(270deg, #0194F3 0%, #1FDB87 100%, #1FDB87 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 284px;
+    height: 54px;
+    font-size: 20px;
+}
