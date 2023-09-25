@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BorderRadiuses,  FontFamilies,  FontSizes,  FontWeights,  Gradients,  Shadows,  Spaces} from "../shared/DesignTokens";
+import { BorderRadiuses,  FontFamilies,  FontSizes,  FontWeights,  Spaces} from "../shared/DesignTokens";
 import doutores from "../assets/objects/doutores.js";
 import prontuarios from "../assets/objects/prontuarios";
 import recursos from "../assets/objects/recursos";
@@ -77,7 +77,7 @@ function PacienteHome() {
       <Container>
         {recursos.map((recurso) => (
           <GradientCard>
-            <img src={recurso.icon} />
+            <img src={recurso.icon} alt=''/>
             <RecursosName>{recurso.name}</RecursosName>
             <Button color="#fff">{`Acessar ${recurso.name.split(" ").pop()}`}</Button>
           </GradientCard>
