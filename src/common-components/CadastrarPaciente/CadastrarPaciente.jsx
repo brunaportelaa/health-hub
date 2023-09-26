@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./CadastrarPaciente.css";
-import { createPatient } from "../../services/API.service";
+import { createPatient } from "../../services/api.service";
+import Select from "../Select";
+import ReactInputMask from "react-input-mask";
+import { toast } from "react-toastify";
+import { DatePicker, LocalizationProvider, ptBR } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { FormControl } from "@mui/material";
+import "dayjs/locale/pt-br";
 
 const PatientForm = () => {
   const [state, setState] = useState({
@@ -9,7 +16,7 @@ const PatientForm = () => {
       lastName: "",
       cpf: "",
       gender: "",
-      birthDate: "",
+      birthDate: null,
       contactNumber: "",
     },
     //   emergencyContact: {
@@ -33,8 +40,26 @@ const PatientForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { patient } = state;
+
+    patient.cpf = patient.cpf.replaceAll(/\D/g, "");
+
+    if (patient.cpf.length < 11) {
+      toast("CPF inválido", { type: "error" });
+      return;
+    }
+
+    if (patient.birthDate.length < 10) {
+      toast("Data de nascimento inválida", { type: "error" });
+      return;
+    }
+
+    patient.contactNumber = patient.contactNumber.replaceAll(/\D/g, "");
+
+    if (patient.contactNumber.length < 13) {
+      toast("Telefone inválido", { type: "error" });
+      return;
+    }
 
     await createPatient(patient);
 
@@ -48,6 +73,8 @@ const PatientForm = () => {
         contactNumber: "",
       },
     });
+
+    toast("Paciente cadastrado!", { type: "success" });
   };
 
   return (
@@ -76,46 +103,62 @@ const PatientForm = () => {
         </div>
         <div>
           <label>CPF*</label>
-          <input
-            name="cpf"
+          <ReactInputMask
+            mask="999.999.999-99"
             value={state.patient.cpf}
-            type="text"
-            pattern="\d*"
-            maxLength="11"
-            minLength="11"
+            name="cpf"
             onChange={(e) => {
-              e.target.value = e.target.value.replace(/[^0-9]/g, "");
               handleChange(e, "patient");
             }}
             required
           />
         </div>
-        <div>
-          <label>Gênero*</label>
-          <input
-            type="text"
-            name="gender"
-            value={state.patient.gender}
-            onChange={(e) => handleChange(e, "patient")}
-            required
-          />
-        </div>
-        <div>
-          <label>Data de Nascimento*</label>
-          <input
-            type="text"
-            name="birthDate"
-            value={state.patient.birthDate}
-            onChange={(e) => handleChange(e, "patient")}
-            required
-          />
-        </div>
+
+        <Select
+          id={"gender"}
+          label="Gênero*"
+          onChange={(e) => handleChange(e, "patient")}
+          options={[
+            { value: "male", label: "Masculino" },
+            { value: "female", label: "Feminino" },
+            { value: "other", label: "Outro" },
+          ]}
+          value={state.patient.gender}
+          required
+        />
+
+        <label>Data de Nascimento*</label>
+        <FormControl fullWidth>
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            adapterLocale="pt-BR"
+            localeText={
+              ptBR.components.MuiLocalizationProvider.defaultProps.localeText
+            }
+          >
+            <DatePicker
+              value={state.patient.birthDate}
+              label="Data"
+              onChange={(e) => {
+                console.log(e?.toISOString());
+                setState((p) => ({
+                  ...p,
+                  patient: {
+                    ...p.patient,
+                    birthDate: e?.toISOString()?.substring(0, 10),
+                  },
+                }));
+              }}
+            />
+          </LocalizationProvider>
+        </FormControl>
+
         <div>
           <label>Telefone para Contato*</label>
-          <input
-            type="text"
-            name="contactNumber"
+          <ReactInputMask
+            mask="+55 (99) 99999-9999"
             value={state.patient.contactNumber}
+            name="contactNumber"
             onChange={(e) => {
               handleChange(e, "patient");
             }}
