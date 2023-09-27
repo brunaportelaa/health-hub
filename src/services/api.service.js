@@ -56,3 +56,12 @@ export const createPatient = async (patient) => {
       throw error;
     });
 };
+
+export const getPatientByCpf = async (cpf) => {
+  return await api
+    .get(`/Patient?identifier=cpf|${cpf}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      throw error;
+    });
+};

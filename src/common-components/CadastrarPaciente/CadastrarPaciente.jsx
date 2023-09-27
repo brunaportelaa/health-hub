@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "./CadastrarPaciente.css";
-import { createPatient } from "../../services/api.service";
+import { createPatient, getPatientByCpf } from "../../services/api.service";
 import Select from "../Select";
 import ReactInputMask from "react-input-mask";
 import { toast } from "react-toastify";
-import { DatePicker, LocalizationProvider, ptBR } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { FormControl } from "@mui/material";
-import "dayjs/locale/pt-br";
+import DatePicker from "../DatePicker";
 
 const PatientForm = () => {
   const [state, setState] = useState({
@@ -58,6 +55,14 @@ const PatientForm = () => {
 
     if (patient.contactNumber.length < 13) {
       toast("Telefone inválido", { type: "error" });
+      return;
+    }
+
+    const exists = await getPatientByCpf(patient.cpf);
+    console.log(exists);
+
+    if (exists?.entry?.length) {
+      toast("Paciente já registrado", { type: "warning" });
       return;
     }
 
@@ -128,30 +133,20 @@ const PatientForm = () => {
         />
 
         <label>Data de Nascimento*</label>
-        <FormControl fullWidth>
-          <LocalizationProvider
-            dateAdapter={AdapterDayjs}
-            adapterLocale="pt-BR"
-            localeText={
-              ptBR.components.MuiLocalizationProvider.defaultProps.localeText
-            }
-          >
-            <DatePicker
-              value={state.patient.birthDate}
-              label="Data"
-              onChange={(e) => {
-                console.log(e?.toISOString());
-                setState((p) => ({
-                  ...p,
-                  patient: {
-                    ...p.patient,
-                    birthDate: e?.toISOString()?.substring(0, 10),
-                  },
-                }));
-              }}
-            />
-          </LocalizationProvider>
-        </FormControl>
+
+        <DatePicker
+          value={state.patient.birthDate}
+          label="Data"
+          onChange={(e) => {
+            setState((p) => ({
+              ...p,
+              patient: {
+                ...p.patient,
+                birthDate: e?.toISOString()?.substring(0, 10),
+              },
+            }));
+          }}
+        />
 
         <div>
           <label>Telefone para Contato*</label>
