@@ -134,7 +134,8 @@ const PatientForm = () => {
 
         <label>Data de Nascimento*</label>
 
-        <DatePicker
+        <input
+          type="date"
           value={state.patient.birthDate}
           label="Data"
           onChange={(e) => {
@@ -142,10 +143,11 @@ const PatientForm = () => {
               ...p,
               patient: {
                 ...p.patient,
-                birthDate: e?.toISOString()?.substring(0, 10),
+                birthDate: e?.target.value,
               },
             }));
           }}
+          required
         />
 
         <div>

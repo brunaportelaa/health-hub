@@ -17,14 +17,7 @@ export default function DatePicker({ label, value, onChange }) {
           ptBR.components.MuiLocalizationProvider.defaultProps.localeText
         }
       >
-        <DP
-          value={value}
-          label={label}
-          onChange={onChange}
-          InputProps={{
-            sx: { "&.MuiInputBase-root": { backgroundColor: "#F5F5F5" } },
-          }}
-        />
+        <DP value={value} label={label} onChange={onChange} />
       </LocalizationProvider>
     </FormControl>
   );
