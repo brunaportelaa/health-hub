@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CadastrarProntuario from "./screens/CadastrarProntuario";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Resultados from "./screens/Resultados";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             element={<CadastrarProntuario />}
           />
           <Route path="/cadastrar-paciente" element={<CadastrarPaciente />} />
+          <Route path="/resultados" element={<Resultados />} />
           <Route path="*" element="" />
         </Routes>
       </BrowserRouter>
