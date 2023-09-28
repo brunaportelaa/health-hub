@@ -139,6 +139,8 @@ button,
 input {
     /* 1 */
     overflow: visible;
+    font-family: "Poppins","Helvetica","Arial",sans-serif;
+    letter-spacing: 1px;
 }
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
