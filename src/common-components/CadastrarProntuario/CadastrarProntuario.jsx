@@ -215,7 +215,7 @@ const CadastroProntuario = () => {
                             Remover Medicamento
                         </button>
                     </div>
-                ))};
+                ))}
 
             </div>
             <div>
