@@ -1,0 +1,76 @@
+.container-cadastrar-paciente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 90px;
+}
+
+.titulo-cadastrar-paciente {
+  font-family: Poppins;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.titulo-contato-emergencia {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.form-cadastrar-paciente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 50px;
+}
+
+label {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+input {
+  width: 540px;
+  height: 56px;
+  top: 424px;
+  left: 363px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  padding: 0 16px;
+  border: none;
+  margin: 10px;
+}
+
+.button-fazer-cadastro {
+  margin: 40px;
+  background: linear-gradient(270deg, #0194f3 0%, #1fdb87 100%, #1fdb87 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 284px;
+  height: 54px;
+  font-size: 20px;
+}

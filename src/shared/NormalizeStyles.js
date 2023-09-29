@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { FontFamilies, Spaces } from './DesignTokens';
+import { createGlobalStyle } from "styled-components";
+import { FontFamilies, Spaces } from "./DesignTokens";
 export const NormalizeStyles = createGlobalStyle`
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -16,7 +16,7 @@ export const NormalizeStyles = createGlobalStyle`
 html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
-    font-size: 10px; /* 3 */
+    font-size: 14px; /* 3 */
 }
 /* Sections
 ========================================================================== */
@@ -139,6 +139,8 @@ button,
 input {
     /* 1 */
     overflow: visible;
+    font-family: "Poppins","Helvetica","Arial",sans-serif;
+    letter-spacing: 1px;
 }
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
