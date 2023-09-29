@@ -38,7 +38,7 @@ export const FontSizes = {
 export const FontWeights = {
 	THIN: 300,
 	REGULAR: 400,
-	MEDIUM: 600,
+	MEDIUM: 500,
 	BOLD: 700,
 };
 export const Spaces = {

@@ -1,7 +1,29 @@
 import styled from "styled-components";
 import { FontWeights } from "../../shared/DesignTokens";
 
+
+const Container = styled.div`
+  margin: 70px;
+`;
+
+const P = styled.p`
+  text-transform: uppercase;
+  letter-spacing: 2.88px;
+`;
+
+
+const H2 = styled.h2`
+/*  */
+`;
+
+
+const H3 = styled.h3`
+  margin-bottom: 5px;
+`;
+
+
 const Item = styled.p`
+    color: #565656;
     display: flex;
     margin:0;
     line-height: 200%;
@@ -9,7 +31,7 @@ const Item = styled.p`
 
 const ItemTitulo = styled.p`
   font-weight: ${FontWeights.BOLD};
-  margin:0;
+  margin:0 5px 0;
 `;
 
 const ItemConteudo = styled.p`
@@ -17,11 +39,11 @@ const ItemConteudo = styled.p`
 `;
 
 
-function Prontuario(){
+function ProntuarioInfo(){
 
     return (
-        <div>
-            <p>Prontuário</p>
+        <Container>
+            <P>Prontuário</P>
             <h1>Dermatite Atópica</h1>
 
             <Item>
@@ -29,7 +51,7 @@ function Prontuario(){
                 <ItemConteudo>Dermatite Atópica</ItemConteudo>
             </Item>
 
-            <h2>Diagnóstico</h2>
+            <H2>Diagnóstico</H2>
             <Item>
                 <ItemTitulo>Problema: </ItemTitulo>
                 <ItemConteudo>Jéssica Medeiros</ItemConteudo>
@@ -51,8 +73,8 @@ function Prontuario(){
                 <ItemConteudo>XX/XX/XXXX</ItemConteudo>
             </Item>
 
-            <h2>Procedimentos</h2>
-            <h3>Nome do Procedimento 1</h3>
+            <H2>Procedimentos</H2>
+            <H3>Nome do Procedimento 1</H3>
             <Item>
                 <ItemTitulo>Categoria: </ItemTitulo>
                 <ItemConteudo>Jéssica Medeiros</ItemConteudo>
@@ -66,8 +88,8 @@ function Prontuario(){
                 <ItemConteudo>Concluído</ItemConteudo>
             </Item>
 
-            <h2>Medicamentos</h2>
-            <h3>Nome do Medicamento 1</h3>
+            <H2>Medicamentos</H2>
+            <H3>Nome do Medicamento 1</H3>
             <Item>
                 <ItemTitulo>Status: </ItemTitulo>
                 <ItemConteudo>Concluído</ItemConteudo>
@@ -81,9 +103,9 @@ function Prontuario(){
                 <ItemConteudo>XX/XX/XXXX</ItemConteudo>
             </Item>
 
-        </div>
+        </Container>
 
     )
 }
 
-export default Prontuario;
+export default ProntuarioInfo;
