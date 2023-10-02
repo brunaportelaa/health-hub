@@ -40,6 +40,7 @@ export default function Select({
   onChange,
   options,
   required,
+  placeholder,
 }) {
   return (
     <FormControl fullWidth variant="filled">
@@ -52,6 +53,7 @@ export default function Select({
         onChange={onChange}
         input={<BootstrapInput />}
         required={required}
+        placeholder={placeholder}
         MenuProps={{
           PaperProps: {
             sx: {

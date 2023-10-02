@@ -107,44 +107,43 @@ export const createMedicalRegistration = async (bundle) => {
             ],
           },
         },
-        {
+        ...bundle.procedures.map((procedure) => ({
           resource: {
             resourceType: "Procedure",
-            status: bundle.procedure.status,
+            status: procedure.status,
             category: [
               {
                 coding: [
                   {
                     system: "http://hl7.org/fhir/ValueSet/procedure-category",
-                    code: bundle.procedure.category,
+                    code: procedure.category,
                   },
                 ],
               },
             ],
             note: [
               {
-                text: bundle.procedure.note,
+                text: procedure.note,
               },
             ],
-            performedDateTime: bundle.procedure.performedDateTime,
+            performedDateTime: procedure.performedDateTime,
           },
-        },
-        {
+        })),
+        ...bundle.medications.map((medication) => ({
           resource: {
             resourceType: "MedicationAdministration",
-            status: bundle.medicationAdministration.status,
+            status: medication.status,
             note: [
               {
-                text: bundle.medicationAdministration.note,
+                text: medication.note,
               },
             ],
-            effectiveDateTime:
-              bundle.medicationAdministration.effectiveDateTime,
+            effectiveDateTime: medication.effectiveDateTime,
             dosage: {
-              text: bundle.medicationAdministration.dosage,
+              text: medication.dosage,
             },
           },
-        },
+        })),
       ],
     });
 

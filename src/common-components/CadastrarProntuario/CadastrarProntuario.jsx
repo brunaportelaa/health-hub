@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CadastrarProntuario.css";
+import Select from "../Select";
 
 const CadastroProntuario = () => {
   const novoProntuario = {
@@ -67,14 +68,30 @@ const CadastroProntuario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const prontuarioMedico = {
-      cpfPaciente: form.cpfPaciente,
-      diagnostico: form.diagnostico,
-      medicamentos: form.medicamentos,
-      procedimentos: form.procedimentos,
+    const bundle = {
+      cpf: form.cpfPaciente,
+      condition: {
+        clinicalStatus: form.diagnostico.status,
+        verificationStatus: form.diagnostico.statusVerificacao,
+        recordedDate: form.diagnostico.dataRegistro,
+        abatementDateTime: form.diagnostico.dataAbatimento,
+        note: form.diagnostico.problema,
+      },
+      procedures: form.procedimentos.map((p) => ({
+        status: p.status,
+        category: p.categoria,
+        note: p.nome,
+        performedDateTime: p.data,
+      })),
+      medications: form.medicamentos.map((m) => ({
+        dosage: m.dosagem,
+        status: m.status,
+        effectiveDateTime: m.data,
+        note: m.nome,
+      })),
     };
-
-    setForm(novoProntuario);
+    console.log(bundle);
+    // setForm(novoProntuario);
   };
 
   return (
@@ -117,28 +134,41 @@ const CadastroProntuario = () => {
               required
             />
           </div>
-          <div>
-            <label>Status:</label>
-            <input
-              type="text"
-              name="status"
-              placeholder="Selecione o status do diagnóstico"
-              value={form.diagnostico.status}
-              onChange={(e) => handleChange(e, "diagnostico")}
-              required
-            />
-          </div>
-          <div>
-            <label>Status de Verificação</label>
-            <input
-              type="text"
-              name="statusVerificacao"
-              placeholder="Selecione o status de verificação"
-              value={form.diagnostico.statusVerificacao}
-              onChange={(e) => handleChange(e, "diagnostico")}
-              required
-            />
-          </div>
+
+          <Select
+            id={"status"}
+            label="Status:"
+            onChange={(e) => handleChange(e, "diagnostico")}
+            options={[
+              { value: "active", label: "Ativo" },
+              { value: "recurrence", label: "Recorrência" },
+              { value: "relapse", label: "Recaída" },
+              { value: "inactive", label: "Inativo" },
+              { value: "remission", label: "Remissão" },
+              { value: "resolved", label: "Resolvido" },
+            ]}
+            value={form.diagnostico.status}
+            placeholder="Selecione o status do diagnóstico"
+            required
+          />
+
+          <Select
+            id={"statusVerificacao"}
+            label="Status de Verificação:"
+            onChange={(e) => handleChange(e, "diagnostico")}
+            options={[
+              { value: "unconfirmed ", label: "Não confirmado" },
+              { value: "provisional  ", label: "Provisório" },
+              { value: "differential ", label: "Diferencial" },
+              { value: "confirmed ", label: "Confirmado" },
+              { value: "refuted ", label: "Refutado" },
+              { value: "entered-in-error", label: "Erro" },
+            ]}
+            value={form.diagnostico.statusVerificacao}
+            placeholder="Selecione o status de verificação"
+            required
+          />
+
           <div>
             <label>Data do Abatimento</label>
             <input
@@ -187,6 +217,7 @@ const CadastroProntuario = () => {
                   placeholder="Informe o nome do medicamento"
                   value={medicamento.nome}
                   onChange={(e) => handleChange(e, "medicamentos", index)}
+                  required
                 />
               </div>
               <div>
@@ -197,6 +228,7 @@ const CadastroProntuario = () => {
                   placeholder="Informe a data de registro"
                   value={medicamento.data}
                   onChange={(e) => handleChange(e, "medicamentos", index)}
+                  required
                 />
               </div>
               <div>
@@ -207,6 +239,7 @@ const CadastroProntuario = () => {
                   placeholder="Selecione o status da medicação"
                   value={medicamento.status}
                   onChange={(e) => handleChange(e, "medicamentos", index)}
+                  required
                 />
               </div>
               <div>
@@ -217,6 +250,7 @@ const CadastroProntuario = () => {
                   placeholder="Informe a dosagem"
                   value={medicamento.dosagem}
                   onChange={(e) => handleChange(e, "medicamentos", index)}
+                  required
                 />
               </div>
               <button
@@ -272,6 +306,7 @@ const CadastroProntuario = () => {
                   placeholder="Informe o nome do procedimento"
                   value={procedimento.nome}
                   onChange={(e) => handleChange(e, "procedimentos", index)}
+                  required
                 />
               </div>
               <div>
@@ -282,6 +317,7 @@ const CadastroProntuario = () => {
                   placeholder="Selecione a categoria do procedimento"
                   value={procedimento.categoria}
                   onChange={(e) => handleChange(e, "procedimentos", index)}
+                  required
                 />
               </div>
               <div>
@@ -292,6 +328,7 @@ const CadastroProntuario = () => {
                   placeholder="Informe a data de registro"
                   value={procedimento.data}
                   onChange={(e) => handleChange(e, "procedimentos", index)}
+                  required
                 />
               </div>
               <div>
@@ -302,6 +339,7 @@ const CadastroProntuario = () => {
                   placeholder="Selecione o status do procedimento"
                   value={procedimento.status}
                   onChange={(e) => handleChange(e, "procedimentos", index)}
+                  required
                 />
               </div>
               <button
