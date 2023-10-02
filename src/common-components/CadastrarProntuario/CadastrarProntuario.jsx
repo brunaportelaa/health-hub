@@ -162,7 +162,7 @@ const CadastroProntuario = () => {
               { value: "differential ", label: "Diferencial" },
               { value: "confirmed ", label: "Confirmado" },
               { value: "refuted ", label: "Refutado" },
-              { value: "entered-in-error", label: "Erro" },
+              { value: "entered-in-error", label: "Erro de digitação" },
             ]}
             value={form.diagnostico.statusVerificacao}
             placeholder="Selecione o status de verificação"
@@ -231,17 +231,25 @@ const CadastroProntuario = () => {
                   required
                 />
               </div>
-              <div>
-                <label>Status</label>
-                <input
-                  type="text"
-                  name="status"
-                  placeholder="Selecione o status da medicação"
-                  value={medicamento.status}
-                  onChange={(e) => handleChange(e, "medicamentos", index)}
-                  required
-                />
-              </div>
+
+              <Select
+                id={"status"}
+                label="Status"
+                onChange={(e) => handleChange(e, "medicamentos", index)}
+                options={[
+                  { value: "in-progress", label: "Em progresso" },
+                  { value: "not-done", label: "Não realizado" },
+                  { value: "on-hold", label: "Em espera" },
+                  { value: "completed", label: "Completo" },
+                  { value: "entered-in-error", label: "Erro de digitação" },
+                  { value: "stopped", label: "Parado" },
+                  { value: "unknown", label: "Desconhecido" },
+                ]}
+                value={medicamento.status}
+                placeholder="Selecione o status da medicação"
+                required
+              />
+
               <div>
                 <label>Dosagem</label>
                 <input
@@ -331,17 +339,25 @@ const CadastroProntuario = () => {
                   required
                 />
               </div>
-              <div>
-                <label>Status</label>
-                <input
-                  type="text"
-                  name="status"
-                  placeholder="Selecione o status do procedimento"
-                  value={procedimento.status}
-                  onChange={(e) => handleChange(e, "procedimentos", index)}
-                  required
-                />
-              </div>
+
+              <Select
+                id={"status"}
+                label="Status"
+                onChange={(e) => handleChange(e, "procedimentos", index)}
+                options={[
+                  { value: "in-progress", label: "Em progresso" },
+                  { value: "not-done", label: "Não realizado" },
+                  { value: "on-hold", label: "Em espera" },
+                  { value: "completed", label: "Completo" },
+                  { value: "entered-in-error", label: "Erro de digitação" },
+                  { value: "stopped", label: "Parado" },
+                  { value: "unknown", label: "Desconhecido" },
+                ]}
+                value={procedimento.status}
+                placeholder="Selecione o status do procedimento"
+                required
+              />
+
               <button
                 className="button-cadastrar-prontuario"
                 type="button"
