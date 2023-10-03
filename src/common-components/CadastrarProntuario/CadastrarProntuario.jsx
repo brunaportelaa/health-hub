@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import "./CadastrarProntuario.css";
 import Select from "../Select";
+import ReactInputMask from "react-input-mask";
+import {
+  createMedicalRegistration,
+  getPatientByCpf,
+} from "../../services/api.service";
+import { toast } from "react-toastify";
+import "./CadastrarProntuario.css";
 
 const CadastroProntuario = () => {
   const novoProntuario = {
@@ -65,7 +71,7 @@ const CadastroProntuario = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const bundle = {
@@ -90,8 +96,24 @@ const CadastroProntuario = () => {
         note: m.nome,
       })),
     };
-    console.log(bundle);
-    // setForm(novoProntuario);
+
+    bundle.cpf = bundle.cpf.replaceAll(/\D/g, "");
+
+    if (bundle.cpf.length < 11) {
+      toast("CPF inválido", { type: "error" });
+      return;
+    }
+
+    const exists = await getPatientByCpf(bundle.cpf);
+
+    if (!exists?.entry?.length) {
+      toast("CPF não registrado na plataforma", { type: "warning" });
+      return;
+    }
+
+    await createMedicalRegistration(bundle);
+    setForm(novoProntuario);
+    toast("Prontuário cadastrado!", { type: "success" });
   };
 
   return (
@@ -100,16 +122,16 @@ const CadastroProntuario = () => {
         Cadastro de Prontuário Médico
       </h1>
       <form className="form-cadastrar-prontuario" onSubmit={handleSubmit}>
-        <div>
-          <label>CPF do Paciente</label>
-          <input
-            type="text"
-            name="cpfPaciente"
-            placeholder="Informe o CPF do paciente"
-            value={form.cpfPaciente}
-            onChange={(e) => handleChange(e, "cpfPaciente")}
-          />
-        </div>
+        <ReactInputMask
+          mask="999.999.999-99"
+          value={form.cpfPaciente}
+          name="cpfPaciente"
+          onChange={(e) => {
+            handleChange(e, "cpfPaciente");
+          }}
+          placeholder="Informe o CPF do paciente"
+          required
+        />
         <div>
           <h2 className="titulo-diagnostico-medicamento">Diagnóstico</h2>
           <div>
@@ -157,11 +179,11 @@ const CadastroProntuario = () => {
             label="Status de Verificação:"
             onChange={(e) => handleChange(e, "diagnostico")}
             options={[
-              { value: "unconfirmed ", label: "Não confirmado" },
-              { value: "provisional  ", label: "Provisório" },
-              { value: "differential ", label: "Diferencial" },
-              { value: "confirmed ", label: "Confirmado" },
-              { value: "refuted ", label: "Refutado" },
+              { value: "unconfirmed", label: "Não confirmado" },
+              { value: "provisional", label: "Provisório" },
+              { value: "differential", label: "Diferencial" },
+              { value: "confirmed", label: "Confirmado" },
+              { value: "refuted", label: "Refutado" },
               { value: "entered-in-error", label: "Erro de digitação" },
             ]}
             value={form.diagnostico.statusVerificacao}
@@ -317,17 +339,31 @@ const CadastroProntuario = () => {
                   required
                 />
               </div>
-              <div>
-                <label>Categoria</label>
-                <input
-                  type="text"
-                  name="categoria"
-                  placeholder="Selecione a categoria do procedimento"
-                  value={procedimento.categoria}
-                  onChange={(e) => handleChange(e, "procedimentos", index)}
-                  required
-                />
-              </div>
+
+              <Select
+                id={"categoria"}
+                label="Categoria"
+                onChange={(e) => handleChange(e, "procedimentos", index)}
+                options={[
+                  {
+                    value: "24642003",
+                    label: "Procedimento ou serviço de psiquiatria",
+                  },
+                  { value: "409063005", label: "Aconselhamento" },
+                  { value: "409073007", label: "Educação" },
+                  { value: "387713003", label: "Procedimento cirúrgico" },
+                  { value: "103693007", label: "Procedimento de diagnóstico" },
+                  { value: "46947000", label: "Manipulação quiroprática" },
+                  {
+                    value: "410606002",
+                    label: "Procedimento de serviço social",
+                  },
+                ]}
+                value={procedimento.categoria}
+                placeholder="Selecione o status do procedimento"
+                required
+              />
+
               <div>
                 <label>Data de Registro</label>
                 <input
