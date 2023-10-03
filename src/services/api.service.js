@@ -67,6 +67,16 @@ export const getPatientByCpf = async (cpf) => {
   }
 };
 
+export const getMedicalRegistrationByCpf = async (cpf) => {
+  try {
+    const { data } = await api.get(`/Bundle?identifier=cpf|${cpf}`);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const createMedicalRegistration = async (bundle) => {
   try {
     const { data } = await api.post(`/Bundle`, {

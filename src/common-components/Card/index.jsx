@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Shadows, Spaces, BorderRadiuses } from "../../shared/DesignTokens"
+import { Shadows, Spaces, BorderRadiuses } from "../../shared/DesignTokens";
 
 export const Card = styled.div`
   width: 30%;
