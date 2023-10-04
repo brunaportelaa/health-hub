@@ -53,3 +53,7 @@
 .error {
   color: red;
 }
+
+.div-input > input {
+  width: 400px;
+}

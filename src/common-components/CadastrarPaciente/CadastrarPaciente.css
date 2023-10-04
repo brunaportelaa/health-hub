@@ -9,7 +9,7 @@
 }
 
 .titulo-cadastrar-paciente {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-size: 48px;
   font-weight: 700;
   line-height: 72px;
@@ -18,7 +18,7 @@
 }
 
 .titulo-contato-emergencia {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-size: 24px;
   font-weight: 500;
   line-height: 36px;
@@ -42,24 +42,12 @@
 }
 
 label {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-size: 20px;
   font-weight: 300;
   line-height: 30px;
   letter-spacing: 0em;
   text-align: center;
-}
-
-input {
-  width: 540px;
-  height: 56px;
-  top: 424px;
-  left: 363px;
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  padding: 0 16px;
-  border: none;
-  margin: 10px;
 }
 
 .button-fazer-cadastro {
@@ -73,4 +61,5 @@ input {
   width: 284px;
   height: 54px;
   font-size: 20px;
+  text-transform: uppercase;
 }
