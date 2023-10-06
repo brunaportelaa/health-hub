@@ -162,3 +162,13 @@ export const createMedicalRegistration = async (bundle) => {
     throw error;
   }
 };
+
+export const getMedicalRegistrationById = async (id) => {
+  try {
+    const { data } = await api.get(`/Bundle/${id}`);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

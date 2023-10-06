@@ -13,7 +13,6 @@ const SearchProntuario = () => {
   });
 
   const handleChange = (e) => {
-    console.log(state);
     setState({
       ...state,
       cpf: e.target.value,
@@ -27,7 +26,7 @@ const SearchProntuario = () => {
       const data = await getMedicalRegistrationByCpf(
         state.cpf.replaceAll(/\D/g, "")
       );
-      console.log(data);
+
       if (!data?.entry?.length) {
         toast("Nenhum prontuário encontrado", { type: "error" });
       }
@@ -56,12 +55,12 @@ const SearchProntuario = () => {
 
         <div className="div-input">
           <ReactInputMask
-              mask="999.999.999-99"
-              value={state.cpf}
-              id="cpf"
-              name="cpf"
-              onChange={handleChange}
-              required
+            mask="999.999.999-99"
+            value={state.cpf}
+            id="cpf"
+            name="cpf"
+            onChange={handleChange}
+            required
           />
         </div>
         <button className="button-pesq-pront" type="submit">

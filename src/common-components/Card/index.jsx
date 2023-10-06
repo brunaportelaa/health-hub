@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Shadows, Spaces, BorderRadiuses } from "../../shared/DesignTokens";
 
 export const Card = styled.div`
+  cursor: pointer;
   width: 30%;
   box-shadow: ${Shadows.ONE};
   text-align: center;

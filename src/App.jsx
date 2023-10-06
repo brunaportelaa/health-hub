@@ -23,7 +23,7 @@ function App() {
             element={<CadastrarProntuario />}
           />
           <Route path="/cadastrar-paciente" element={<CadastrarPaciente />} />
-          <Route path="/prontuario" element={<Prontuario />} />
+          <Route path="/prontuario/:id" element={<Prontuario />} />
           <Route path="*" element={<PaginaNaoEncontrada />} />
         </Routes>
       </BrowserRouter>

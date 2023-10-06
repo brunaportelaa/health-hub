@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ActiveTag from "../ActiveTag";
 import { Card } from "../Card";
 import "./Resultados.css";
@@ -35,6 +36,7 @@ const ResultsPage = ({ cpf, prontuarios = [] }) => {
   //       ativo: false,
   //     },
   //   ];
+  const navigate = useNavigate();
 
   return (
     <div className="container">
@@ -45,7 +47,11 @@ const ResultsPage = ({ cpf, prontuarios = [] }) => {
       <div className="prontuarios-container">
         {prontuarios.map((prontuario) => {
           return (
-            <Card>
+            <Card
+              onClick={() => {
+                navigate(`/prontuario/${prontuario.resource.id}`);
+              }}
+            >
               <h3>{prontuario.resource.entry[0].resource.note[0].text}</h3>
               <p>{prontuario.resource.entry[0].resource.recordedDate}</p>
               {/* //TODO ver quais status é p ser ativo */}

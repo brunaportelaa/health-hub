@@ -24,10 +24,10 @@ api.interceptors.request.use(async (config) => {
   const cookieExp = +localStorage.getItem("auth_e");
 
   if (cookie && cookieExp && new Date().getTime() / 1000 + 30 - cookieExp < 0) {
-    console.log("válido ainda");
+    console.log("token válido ainda");
     config.headers.Authorization = `Bearer ${cookie}`;
   } else {
-    console.log("INVALIDO");
+    console.log("token inválido");
     await apiToken.get("").then((r) => {
       localStorage.setItem("auth", r.data.access_token);
       localStorage.setItem("auth_e", r.data.expires_on);
