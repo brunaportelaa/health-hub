@@ -9,16 +9,16 @@
 }
 
 .titulo-cadastrar-prontuario {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-size: 48px;
   font-weight: 700;
   line-height: 72px;
-  letter-spacing: 0em;
+  letter-spacing: 0;
   text-align: center;
 }
 
 .titulo-diagnostico-medicamento {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-size: 24px;
   font-weight: 500;
   line-height: 36px;
@@ -37,7 +37,7 @@
   padding: 30px;
   background-color: #fff;
   border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 50px;
 }
 

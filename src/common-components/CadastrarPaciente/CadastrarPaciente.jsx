@@ -85,7 +85,7 @@ const PatientForm = () => {
     <div className="container-cadastrar-paciente">
       <h1 className="titulo-cadastrar-paciente">Cadastrar Paciente</h1>
       <form className="form-cadastrar-paciente" onSubmit={handleSubmit}>
-        <div>
+        <div className="form-div">
           <label>Primeiro Nome*</label>
           <input
             type="text"
@@ -95,7 +95,7 @@ const PatientForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-div">
           <label>Último Nome*</label>
           <input
             type="text"
@@ -105,7 +105,7 @@ const PatientForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-div">
           <label>CPF*</label>
           <ReactInputMask
             mask="999.999.999-99"
@@ -131,25 +131,25 @@ const PatientForm = () => {
           required
         />
 
-        <label>Data de Nascimento*</label>
-
-        <input
-          type="date"
-          value={state.patient.birthDate}
-          aria-label="Data"
-          onChange={(e) => {
-            setState({
-              ...state,
-              patient: {
-                ...state.patient,
-                birthDate: e?.target.value,
-              },
-            });
-          }}
-          required
-        />
-
-        <div>
+        <div className="form-div">
+            <label>Data de Nascimento*</label>
+            <input
+                type="date"
+                value={state.patient.birthDate}
+                aria-label="Data"
+                onChange={(e) => {
+                    setState({
+                        ...state,
+                        patient: {
+                            ...state.patient,
+                            birthDate: e?.target.value,
+                        },
+                    });
+                }}
+                required
+            />
+        </div>
+        <div className="form-div">
           <label>Telefone para Contato*</label>
           <ReactInputMask
             mask="+55 (99) 99999-9999"
@@ -209,7 +209,7 @@ const PatientForm = () => {
             />
           </div> */}
         <button className="button-fazer-cadastro" type="submit">
-          FAZER CADASTRO
+          Fazer Cadastro
         </button>
       </form>
     </div>

@@ -132,9 +132,9 @@ const CadastroProntuario = () => {
           placeholder="Informe o CPF do paciente"
           required
         />
-        <div>
+        <div style={{width: '100%'}}>
           <h2 className="titulo-diagnostico-medicamento">Diagnóstico</h2>
-          <div>
+          <div className="form-div">
             <label>Problema</label>
             <input
               type="text"
@@ -145,7 +145,7 @@ const CadastroProntuario = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-div">
             <label>Data de Registro</label>
             <input
               type="date"
@@ -191,7 +191,7 @@ const CadastroProntuario = () => {
             required
           />
 
-          <div>
+          <div className="form-div">
             <label>Data do Abatimento</label>
             <input
               type="date"

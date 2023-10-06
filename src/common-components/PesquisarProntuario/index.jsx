@@ -13,6 +13,7 @@ const SearchProntuario = () => {
   });
 
   const handleChange = (e) => {
+    console.log(state);
     setState({
       ...state,
       cpf: e.target.value,
@@ -53,16 +54,16 @@ const SearchProntuario = () => {
           Insira seu CPF:
         </label>
 
-        <ReactInputMask
-          mask="999.999.999-99"
-          value={state.cpf}
-          id="cpf"
-          name="cpf"
-          onChange={(e) => {
-            handleChange(e);
-          }}
-          required
-        />
+        <div className="div-input">
+          <ReactInputMask
+              mask="999.999.999-99"
+              value={state.cpf}
+              id="cpf"
+              name="cpf"
+              onChange={handleChange}
+              required
+          />
+        </div>
         <button className="button-pesq-pront" type="submit">
           Pesquisar
         </button>
